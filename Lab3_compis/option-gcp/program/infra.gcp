@@ -1,0 +1,25 @@
+provider "gcp" {
+  project     = var.gcp_project
+  zone        = var.gcp_zone
+  credentials = var.gcp_credentials_file
+}
+
+# Replace with your GCP project ID
+variable "gcp_project" {
+  default = "YOUR_PROJECT_ID"
+}
+
+variable "gcp_zone" {
+  default = "us-central1-a"
+}
+
+# Place your credentials.json in this directory
+variable "gcp_credentials_file" {
+  default = "credentials.json"
+}
+
+resource "gcp_instance" "web" {
+  name         = "my-web-server"
+  machine_type = "e2-micro"
+  image        = "debian-cloud/debian-11"
+}
